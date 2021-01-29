@@ -1,0 +1,108 @@
+﻿@model IEnumerable<TrueCrimeRepo.Models.CrimeListItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+<img src="~/Images/Edgy Sportswear Etsy Banner.png">
+<br />
+@*<h2>Crimes</h2>*@
+<h3>Find all of our true crimes listed below. </h3>
+<b />
+<h4>To view full details including the podcasts, tv shows, and books for the crime, select the "Details" box below.</h4>
+<br />
+<p>
+    <a href='@Url.Action("Create")' class="btn btn-success">
+        <i class="fas fa-plus"></i> &nbsp; ADD a new true crime
+    </a>
+    @*@Html.ActionLink("Add a new true crime", "Create")*@
+</p>
+@if (TempData.ContainsKey("SaveResult"))
+{<div class="alert alert-success fade in" role="alert">
+        @ViewBag.SaveResult
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+        @TempData["SaveResult"]
+    </div>
+}
+
+<table class="table">
+    <tr>
+        @*<th>
+                @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.CrimeSortParm})
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th class="col-md-6">
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Year)
+             </th>*@
+        @*<th class="col-md-1">
+                @Html.DisplayNameFor(model => model.IsCrimeSolved)
+            </th>*@
+        @*<th>
+                @Html.DisplayNameFor(model => model.Perpetrator)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>*@
+        <th class="col-md-3">
+            To view details, edit, or delete, please click below.
+        </th>
+    </tr>
+
+
+    @foreach (var item in Model.OrderBy(Model => Model.Title))
+    {
+        <tr style="background-color: lightgray">
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.IsCrimeSolved)
+                </td>*@
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Year)
+                </td>*@
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Perpetrator)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>*@
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.CrimeID }, new { @class = "btn btn-default" })
+                @Html.ActionLink("Edit", "Edit", new { id = item.CrimeID }, new { @class = "btn btn-default" })
+
+                @Html.ActionLink("Delete", "Delete", new { id = item.CrimeID }, new { @class = "btn btn-danger" })
+
+            </td>
+        </tr>
+    }
+</table>
+
+
+@*<nav aria-label="Page navigation example">
+        <ul class="pagination pg-blue">
+            <li class="page-item ">
+                <a class="page-link" tabindex="-1">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link">1</a></li>
+            <li class="page-item active">
+                <a class="page-link">2 <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="page-item"><a class="page-link">3</a></li>
+            <li class="page-item ">
+                <a class="page-link">Next</a>
+            </li>
+        </ul>
+    </nav>*@
+
+
+

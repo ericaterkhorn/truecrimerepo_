@@ -1,0 +1,187 @@
+﻿@model TrueCrimeRepo.Models.CrimeDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<img src="~/Images/crimedetails.png"/>
+<br/>
+<br/>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">@Html.DisplayFor(model => model.Title)</h3>
+    </div>
+    <div class="panel-body">
+        @Html.DisplayFor(model => model.Description)
+        <br />
+        <br />
+
+        <b>@Html.DisplayNameFor(model => model.Perpetrator) : &nbsp;</b>
+
+        @Html.DisplayFor(model => model.Perpetrator)
+        <br />
+        <b>@Html.DisplayNameFor(model => model.Location) : &nbsp;</b>
+
+        @Html.DisplayFor(model => model.Location)
+        <br />
+
+        <b>@Html.DisplayNameFor(model => model.IsCrimeSolved) : &nbsp;</b>
+
+        @Html.DisplayFor(model => model.IsCrimeSolved)
+
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Podcasts &nbsp;<i class="fas fa-podcast"></i></h3>
+    </div>
+    <div class="panel-body">
+        @foreach (var podcast in Model.Podcasts.OrderBy(Model => Model.Title))
+        {
+            @Html.DisplayFor(model => podcast.Title) <b>:</b> @Html.DisplayFor(model => podcast.PodcastEpisodeTitle)<b></b><b></b> <i> @Html.DisplayFor(model => podcast.WebsiteUrl)</i>
+            <br />
+            <br />
+        }
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                TV Shows  &nbsp; <i class="fas fa-tv"></i>
+            </h3>
+        </div>
+        <div class="panel-body">
+            @foreach (var tvshow in Model.TVShows.OrderBy(Model => Model.Title))
+            {
+                @Html.DisplayFor(model => tvshow.Title) <b>:</b><i> @Html.DisplayFor(model => tvshow.Channel_OnlineStream)</i>
+                <br />
+                <br />
+            }
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                Books &nbsp; <i class="fas fa-book"></i>
+            </h3>
+        </div>
+        <div class="panel-body">
+            @foreach (var book in Model.Books.OrderBy(Model => Model.Title))
+            {
+            <i>@Html.DisplayFor(model => book.Title)</i>
+                <br />
+                <br />
+            }
+        </div>
+    </div>
+    <div>
+
+        @*<dl class="form-group-lg">*@
+        @*<dt>
+                @Html.DisplayNameFor(model => model.CrimeID)
+            </dt>*@
+
+        @*<dd>
+                @Html.DisplayFor(model => model.CrimeID)
+            </dd>*@
+        @*<dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>*@
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.Perpetrator)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Perpetrator)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Location)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Location)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.IsCrimeSolved)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IsCrimeSolved)
+            </dd>*@
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.CreatedUtc)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CreatedUtc)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ModifiedUtc)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ModifiedUtc)
+            </dd>*@
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.Podcasts)
+            </dt>
+            <dd>
+                @foreach (var podcast in Model.Podcasts)
+                {
+                    @Html.DisplayFor(model => podcast.Title) <b></b> @Html.DisplayFor(model => podcast.WebsiteUrl)*@
+        @*@Html.DisplayFor(model => podcast.WebsiteUrl)*@
+        @*<br />*@
+        @*}
+
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.TVShows)
+                </dt>
+                <dd>
+                    @foreach (var tvshow in Model.TVShows)
+                    {
+                        @Html.DisplayFor(model => tvshow.Title) <b></b> @Html.DisplayFor(model => tvshow.Channel_OnlineStream)
+                    }
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Books)
+                </dt>
+                <dd>
+                    @foreach (var book in Model.Books)
+                    {
+                        @Html.DisplayFor(model => book.Title)
+                        <br />
+                    }
+                </dd>
+            </dl>*@
+    </div>
+    <div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.CrimeID }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+
+
+
+
+
+

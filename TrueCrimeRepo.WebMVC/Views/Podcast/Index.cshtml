@@ -1,0 +1,111 @@
+﻿@model IEnumerable<TrueCrimeRepo.Models.PodcastListItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+<img src="~/Images/Podcasts.png"/>
+@*<h2>True Crime Podcasts</h2>*@
+<h3>Find all of our podcasts listed below. </h3>
+<br />
+<p>
+    <a href='@Url.Action("Create")' class="btn btn-success"><i class="fas fa-plus"></i> &nbsp; ADD a new podcast to a true crime</a>
+    @*@Html.ActionLink("Add a new true crime", "Create")*@
+</p>
+
+@if (TempData.ContainsKey("SaveResult"))
+{
+    <div class="alert alert-success fade in" role="alert">
+
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+        @TempData["SaveResult"]
+    </div>
+}
+
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.PodcastID)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.ApplicationUser)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.CrimeID)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Crime.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title) &nbsp;<i class="fas fa-podcast"></i>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PodcastEpisodeTitle) 
+        </th>
+
+        @*<th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WebsiteUrl)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.CreatedUtc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModifiedUtc)
+        </th>*@
+
+        <th class="col-md-3">
+            To view details, edit, or delete, please click below.
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model.OrderBy(Model => Model.Crime.Title))
+    {
+        <tr style="background-color: lightgray">
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.PodcastID)
+                </td>*@
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.ApplicationUser)
+                </td>*@
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.CrimeID)
+                </td>*@
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Crime.Title)*@
+                <u><a href="@Url.Action("Details", "Crime", new { id = item.CrimeID })">@Html.DisplayFor(modelItem => item.Crime.Title)</a></u>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PodcastEpisodeTitle)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WebsiteUrl)
+            </td>*@
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.CreatedUtc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModifiedUtc)
+                </td>*@
+
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.PodcastID }, new { @class = "btn btn-default" })
+                @Html.ActionLink("Edit", "Edit", new { id = item.PodcastID }, new { @class = "btn btn-default" })
+
+
+                @Html.ActionLink("Delete", "Delete", new { id = item.PodcastID }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>

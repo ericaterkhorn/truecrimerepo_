@@ -1,0 +1,74 @@
+﻿@model IEnumerable<TrueCrimeRepo.Models.TVShowListItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<img src="~/Images/TV.png"/>
+@*<h2>True Crime TV Shows/Documentaries</h2>*@
+<h3>Find all of our tv shows and documentaries listed below. </h3>
+<br/>
+<p>
+    <a href='@Url.Action("Create")' class="btn btn-success"><i class="fas fa-plus"></i> ADD a tv show to a true crime</a>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+@if (TempData.ContainsKey("SaveResult"))
+{
+    <div class="alert alert-success fade in" role="alert">
+
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+        @TempData["SaveResult"]
+    </div>
+}
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.TVShowID)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Crime.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title) <i class="fas fa-tv"></i>
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Channel_OnlineStream)
+        </th>*@
+        <th class="col-md-3">
+            To view details, edit, or delete, please click below.
+        </th>
+    </tr>
+
+    @foreach (var item in Model.OrderBy(Model => Model.Crime.Title))
+    {
+        <tr style="background-color: lightgray">
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.TVShowID)
+                </td>*@
+            <td>
+                <u><a href="@Url.Action("Details", "Crime", new { id = item.CrimeID })">@Html.DisplayFor(modelItem => item.Crime.Title)</a></u>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Channel_OnlineStream)
+            </td>*@
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.TVShowID }, new { @class = "btn btn-default" })
+                @Html.ActionLink("Edit", "Edit", new { id = item.TVShowID }, new { @class = "btn btn-default" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.TVShowID }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+        
